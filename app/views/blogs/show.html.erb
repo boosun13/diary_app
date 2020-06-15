@@ -8,6 +8,17 @@
 <p>
   <strong>Content:</strong>
   <%= @blog.content %>
+  <br>
+  <div>
+    <div>
+      <P>更新日時</p>
+      <%= @blog.updated_at %>
+    </div>
+    <div>
+      <P>作成日時</p>
+      <%= @blog.created_at %>
+    </div>
+  </div>
 </p>
 
 <%= link_to 'Edit', edit_blog_path(@blog) %> |
