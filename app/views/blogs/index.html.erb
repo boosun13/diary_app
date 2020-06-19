@@ -8,15 +8,17 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-<%= link_to '新規追加', new_blog_path, class: "btn btn-light" %>
+  <%= link_to '新規追加', new_blog_path, class: "btn btn-light" %>
 
-  <tbody>
+  <ul>
     <% @blogs.each do |blog| %>
-      <tr>
-        <td><%= link_to blog.title, blog %></td>
-      </tr>
+      <li>
+        <%= blog.created_at %>
+        <br>
+        <%= link_to blog.title, blog %>
+      </li>
     <% end %>
-  </tbody>
+  </ul>
 </table>
 
 <br>

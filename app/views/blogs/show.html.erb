@@ -13,8 +13,6 @@
     <div>
       <P>更新日時</p>
       <%= @blog.updated_at %>
-    </div>
-    <div>
       <P>作成日時</p>
       <%= @blog.created_at %>
     </div>
@@ -22,6 +20,6 @@
 </p>
 
 <%= link_to '再編集', edit_blog_path(@blog), class: "btn btn-outline-primary m-2" %>
-<%= link_to '削除', @blog, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+<%= link_to '削除', @blog, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger" %>
 <br>
 <%= link_to '一覧へ戻る', blogs_path %>
