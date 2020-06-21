@@ -12,7 +12,12 @@
 
   <body>
     <%= render "layouts/header" %>
-    <%= yield %>
+    <div class="container-fluid">
+      <div class="row">
+        <%= render "blogs/sidemenu" %>
+        <%= yield %>
+      </div>
+    </div>
     <%= render "layouts/footer" %>
   </body>
 </html>
