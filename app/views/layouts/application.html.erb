@@ -15,7 +15,9 @@
     <div class="container-fluid">
       <div class="row">
         <%= render "blogs/sidemenu" %>
-        <%= yield %>
+        <div class="col bg-info" id="main">
+          <%= yield %>
+        </div>
       </div>
     </div>
     <%= render "layouts/footer" %>

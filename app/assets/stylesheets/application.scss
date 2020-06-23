@@ -14,5 +14,10 @@
  *= require_self
  */
 
- @import "bootstrap";
- @import "scaffolds";
+@import "bootstrap";
+@import "scaffolds";
+
+body {
+    min-height: calc(100vh - 60px);
+    overflow: hidden;
+}
