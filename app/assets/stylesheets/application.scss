@@ -17,7 +17,12 @@
 @import "bootstrap";
 @import "scaffolds";
 
-body {
-    min-height: calc(100vh - 60px);
-    overflow: hidden;
+ul {
+    list-style: none;
+}
+
+a{
+    color:#000000;
+    text-decoration:none;
+    border-bottom: none;
 }

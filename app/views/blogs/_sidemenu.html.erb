@@ -1,4 +1,4 @@
-<div class="bg-light m-2">
+<div class="col-xs-12 col-lg-3 bg-light h-75 m-2">
   <p id="notice"><%= notice %></p>
 
   <h1>最新5件</h1>
@@ -16,7 +16,7 @@
         <li>
           <%= blog.created_at %>
           <br>
-          <%= link_to(blog.title, "/blogs/#{blog.id}",remote: true) %>
+          <%= link_to(blog.title, "/blogs/#{blog.id}", class: "btn btn-outline-warning", remote: true) %>
         </li>
       <% end %>
     </ul>
