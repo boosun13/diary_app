@@ -1,17 +1,23 @@
-<div>
-  <ul>
-    <% @blogs.each do |blog| %>
-      <li>
-        <div class="card mt-2">
-          <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-muted"><%= link_to blog.title, blog,class: "btn btn-outline-warning" %></h6>
-            <h5 class="card-title"><%= blog.created_at %></h5>
-            <p class="card-text"><%= blog.content %></p>
-          </div>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+<div class="container-fluid">
+  <div class="row blogs">
+    <%= render "blogs/sidemenu" %>
+    <div class="col" id="main">
+      <%= will_paginate @blogs, renderer: BootstrapPagination::Rails %>
+      <ul>
+        <% @blogs.each do |blog| %>
+          <li>
+            <div class="card mt-2">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted"><%= link_to blog.title, blog,class: "btn btn-outline-warning", remote: true %></h6>
+                <h5 class="card-title"><%= blog.created_at %></h5>
+                <p class="card-text"><%= truncate(blog.content, length:40, omission: '…') %></p>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
 
 

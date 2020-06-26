@@ -4,9 +4,10 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all.order(id: "DESC")
+    @blogs = Blog.all.order(id: "DESC").
+      paginate(page: params[:page], per_page: 3)
   end
-
+  
   # GET /blogs/1
   # GET /blogs/1.json
   def show
@@ -61,6 +62,7 @@ class BlogsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
