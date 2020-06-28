@@ -17,15 +17,19 @@
           Tool
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to '新規追加', new_blog_path, class: "dropdown-item",remote: true %>
-          <a class="dropdown-item" href="#">Another action</a>
+          <%= link_to 'New Blog', new_blog_path, class: "dropdown-item" %>
+          <a class="dropdown-item" href="#">Search Blog</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#"></a>
         </div>
       </li>
-      <li class="nav-item">
+      <%
+=begin%>
+ <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
+      </li> 
+<%
+=end%>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

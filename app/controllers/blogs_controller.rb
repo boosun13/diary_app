@@ -1,11 +1,15 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :blogs_index
+
+  def blogs_index
+      @new_blogs = Blog.all.order(id: "DESC")
+  end
 
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all.order(id: "DESC").
-      paginate(page: params[:page], per_page: 3)
+    @blogs = Blog.all.order(id: "DESC").paginate(page: params[:page], per_page: 3)
   end
   
   # GET /blogs/1

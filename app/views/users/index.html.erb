@@ -1,2 +1,19 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/user/index.html.erb</p>
+<div class="container-fluid">
+    <p id="notice"><%= notice %></p>
+    <div class="row">
+        <div class="col">
+            <%= will_paginate @users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+            <ul>
+            <% @users.each do |user| %>
+                <li>
+                <div class="card mt-2">
+                    <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted"><%= link_to user.name, user,class: "btn btn-outline-warning" %></h6>
+                    </div>
+                </div>
+                </li>
+            <% end %>
+            </ul>
+        </div>
+    </div>
+</div>

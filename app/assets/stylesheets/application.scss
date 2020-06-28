@@ -15,13 +15,18 @@
  */
 
 @import "bootstrap";
-@import "scaffolds";
 
-ul {
+.row ul {
     list-style: none;
+    padding:0 ;
+    margin:auto ;
 }
 
 
 footer{
     height: 50px;
+}
+
+main{
+    min-height: calc(91vh - 50px);
 }

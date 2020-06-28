@@ -1,0 +1,20 @@
+<div class="col">
+    <p id="notice"><%= notice %></p>
+    <p>
+        <strong>ユーザー名</strong>
+        <%= @user.name %>
+    </p>
+    <p>
+        <strong>メールアドレス</strong>
+        <%= simple_format(@user.email) %>
+        <div>
+            <P>登録日時</p>
+            <%= @user.created_at %>
+        </div>
+    </p>
+
+    <%= link_to '再編集', edit_user_path(@user), class: "btn btn-outline-primary m-2" %>
+    <%= link_to '削除', @user, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger" %>
+    <br>
+    <%= link_to '一覧へ戻る', users_path %>
+</div>
