@@ -2,18 +2,20 @@
     <p id="notice"><%= notice %></p>
     <div class="row">
         <div class="col">
-            <%= will_paginate @users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
-            <ul>
+            <div class="text-center">
+                <%= will_paginate @users, list_classes: %w(pagination justify-content-center) %>
+            </div>
             <% @users.each do |user| %>
-                <li>
-                <div class="card mt-2">
-                    <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted"><%= link_to user.name, user,class: "btn btn-outline-warning" %></h6>
+                <%= link_to user, class: "users-index-item mt-2 mb-2 " do %>
+                    <div class="user-left">
+                        <img src="<%= "/user_images/#{user.image_name}" %>" class="mr-3">
                     </div>
-                </div>
-                </li>
+                    <div class="user-right">
+                        <h6 class="mb-2"><%= user.name %></h6>
+                    </div>
+                <% end %>
             <% end %>
-            </ul>
+
         </div>
     </div>
 </div>

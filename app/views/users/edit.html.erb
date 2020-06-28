@@ -1,4 +1,4 @@
-<h1>Sign Up</h1>
+<h1>User Edit</h1>
 
 <%= form_tag(users_path) do %>
     <% if @user.errors.any? %>
@@ -19,6 +19,11 @@
 
     <div class="field m-2" >
         <p>メールアドレス</p>
+        <input name = "email" value="<%= @user.email %>" class="form-control col-sm-5" >
+    </div>
+
+    <div class="field m-2" >
+        <p>アイコン</p>
         <input name = "email" value="<%= @user.email %>" class="form-control col-sm-5" >
     </div>
 

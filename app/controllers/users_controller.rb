@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all.
-    paginate(page: params[:page], per_page: 10)
+    paginate(page: params[:page], per_page: 3)
   end
 
   def show
@@ -14,8 +14,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(name: params[:name], email: params[:email],password: params[:password])
-
+    @user = User.new(name: params[:name],
+      email: params[:email],
+      password: params[:password],
+      image_name: "noimage.png"
+    )
     if @user.save
       redirect_to "/users", notice: 'User was successfully created.'
     else

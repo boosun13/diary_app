@@ -3,7 +3,7 @@
   <div class="row blogs">
     <%= render "blogs/sidemenu" %>
     <div class="col" id="main">
-      <%= will_paginate @blogs, list_classes: %w(pagination justify-content-end) %>
+      <%= will_paginate @blogs, list_classes: %w(pagination justify-content-center) %>
       <ul>
         <% @blogs.each do |blog| %>
           <li>
@@ -17,7 +17,7 @@
           </li>
         <% end %>
       </ul>
-      <%= will_paginate @blogs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+      <%= will_paginate @blogs, list_classes: %w(pagination justify-content-center) %>
     </div>
   </div>
 </div>

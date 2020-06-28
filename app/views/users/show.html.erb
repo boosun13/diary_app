@@ -1,5 +1,8 @@
 <div class="col">
     <p id="notice"><%= notice %></p>
+    <div>
+        <img src="<%= "/user_images/#{@user.image_name}" %>">
+    </div>
     <p>
         <strong>ユーザー名</strong>
         <%= @user.name %>
