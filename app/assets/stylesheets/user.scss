@@ -3,14 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .users-index-item {
-padding: 20px 30px;
-background-color: white;
-overflow: hidden;
-box-shadow: 0 2px 6px #c1ced7;
-display: table;
-width: 400px;
-margin: auto;
+    padding: 20px 30px;
+    background-color: rgba(255, 255, 255, 0.63);
+    overflow: hidden;
+    box-shadow: 0 2px 6px #c1ced7;
+    display: table;
+    margin: auto;
 }
+
+
+
 
 .user-left img {
 width: 50px;
@@ -27,12 +29,19 @@ width: 10%;
 }
 
 .user-right {
-width: 90%;
-padding-left: 25px;
-text-align: left;
-display: table-cell;
-vertical-align: middle;
+    width: 90%;
+    padding-left: 40px;
+    text-align: left;
+    display: table-cell;
+    vertical-align: middle;
+    color: black;
 }
+
+a:hover{
+    text-decoration: none;
+    }
+
+
 
 .user img {
     width: 80px;
@@ -42,3 +51,7 @@ vertical-align: middle;
     margin: 20px 0 10px;
     object-fit: cover;
     }
+
+.user-show{    
+    box-shadow: 0 2px 6px #c1ced7;
+}

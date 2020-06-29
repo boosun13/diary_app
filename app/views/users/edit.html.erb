@@ -1,6 +1,6 @@
-<h1>User Edit</h1>
+<h1 class="text-center p-2">User Edit</h1>
 
-<div class="text-center">
+<div class="user-show col bg-light pt-4 mb-5 mx-auto text-center" style="width:500px; height:450px;">
 <%= form_tag(user_path, method: :put , multipart: true) do %>
     <% if @user.errors.any? %>
         <div id="error_explanation">
@@ -15,12 +15,12 @@
 
     <div class="field mx-auto">
         <p>ユーザー名</p>
-        <input name = "name" value="<%= @user.name %>" class="form-control col-sm-5 mx-auto" >
+        <input name = "name" value="<%= @user.name %>" class="form-control col-8 mx-auto" >
     </div>
 
     <div class="field mx-auto" >
         <p>メールアドレス</p>
-        <input name = "email" value="<%= @user.email %>" class="form-control col-sm-5 mx-auto" >
+        <input name = "email" value="<%= @user.email %>" class="form-control col-8 mx-auto" >
     </div>
 
     <div class="field mx-auto" >
@@ -33,7 +33,7 @@
 
     <div class="field mx-auto" >
         <p>パスワード</p>
-        <input name = "password" value="<%= @user.password %>" class="form-control col-sm-5 mx-auto" >
+        <input name = "password" value="<%= @user.password %>" class="form-control col-8 mx-auto" >
     </div>
 
     <div class="actions m-2">

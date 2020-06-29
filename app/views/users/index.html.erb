@@ -1,12 +1,11 @@
+<h3 class="text-center p-2">User Index</h3>
 <div class="container-fluid">
     <p id="notice"><%= notice %></p>
     <div class="row">
-        <div class="col">
-            <div class="text-center">
-                <%= will_paginate @users, list_classes: %w(pagination justify-content-center) %>
-            </div>
+        <div class="col cols-sx-6">
+            <%= will_paginate @users, list_classes: %w(pagination justify-content-center) %>
             <% @users.each do |user| %>
-                <%= link_to user, class: "users-index-item mt-2 mb-2 " do %>
+                <%= link_to user, class: "users-index-item bg-light my-3" do %>
                     <div class="user-left">
                         <img src="<%= "/user_images/#{user.image_name}" %>" class="mr-3">
                     </div>
@@ -15,6 +14,7 @@
                     </div>
                 <% end %>
             <% end %>
+            <%= will_paginate @users, list_classes: %w(pagination justify-content-center) %>
 
         </div>
     </div>
