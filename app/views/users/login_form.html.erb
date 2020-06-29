@@ -3,6 +3,11 @@
         <%= @error_message %>
     </div>
 <% end %>
+<% if notice == "ログインが必要です" %>
+    <p id="notice" class="col bg-danger text-center py-2"><%= notice %></p>
+<% elsif notice %>
+    <p id="notice" class="col bg-success text-center py-2"><%= notice %></p>
+<% end %>
 <h1 class="text-center p-2">Login</h1>
 <div class="user-show col bg-light mx-auto text-center pt-5" style="width:500px; height:400px;">
     <%= form_tag("/login") do %>

@@ -20,6 +20,7 @@ class UsersController < ApplicationController
       image_name: "noimage.png"
     )
     if @user.save
+      session[:user_id] = @user.id
       redirect_to ("/users"), notice: 'User was successfully created.'
     else
       render ("users/new")
