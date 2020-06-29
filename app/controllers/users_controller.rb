@@ -36,11 +36,16 @@ class UsersController < ApplicationController
     @user.email = params[:email]
 
     if params[:image]
-      perms = ['.jpg','.jpeg','.gif','.png']
-      @user.image_name = "#{@user.id}.jpg"
-      image = params[:image]
-      File.open("public/user_images/#{@user.image_name}", 'wb') { |f| f.write(image.read) }
+      if params[:image] == "reset"
+        @user.image_name = "noimage.png"
+      else
+        perms = ['.jpg','.jpeg','.gif','.png']
+        @user.image_name = "#{@user.id}.jpg"
+        image = params[:image]
+        File.open("public/user_images/#{@user.image_name}", 'wb') { |f| f.write(image.read) }
+      end
     end
+
 
     if @user.save
       redirect_to ("/users"), notice: 'User was successfully updated.'
