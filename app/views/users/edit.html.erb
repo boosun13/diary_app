@@ -1,6 +1,7 @@
 <h1>User Edit</h1>
 
-<%= form_tag(users_path) do %>
+<div class="text-center">
+<%= form_tag(user_path, method: :put , multipart: true) do %>
     <% if @user.errors.any? %>
         <div id="error_explanation">
             <h2><%= pluralize(@user.errors.count, "error") %> prohibited this blog from being saved:</h2>
@@ -12,27 +13,27 @@
         </div>
     <% end %>
 
-    <div class="field ml-2 mr-2">
+    <div class="field mx-auto">
         <p>ユーザー名</p>
-        <input name = "name" value="<%= @user.name %>" class="form-control col-sm-5" >
+        <input name = "name" value="<%= @user.name %>" class="form-control col-sm-5 mx-auto" >
     </div>
 
-    <div class="field m-2" >
+    <div class="field mx-auto" >
         <p>メールアドレス</p>
-        <input name = "email" value="<%= @user.email %>" class="form-control col-sm-5" >
+        <input name = "email" value="<%= @user.email %>" class="form-control col-sm-5 mx-auto" >
     </div>
 
-    <div class="field m-2" >
+    <div class="field mx-auto" >
         <p>アイコン</p>
-        <input name = "email" value="<%= @user.email %>" class="form-control col-sm-5" >
+        <input name="image" type="file" class="mx-auto">
     </div>
 
-    <div class="field m-2" >
+    <div class="field mx-auto" >
         <p>パスワード</p>
-        <input name = "password" value="<%= @user.password %>" class="form-control col-sm-5" >
+        <input name = "password" value="<%= @user.password %>" class="form-control col-sm-5 mx-auto" >
     </div>
 
     <div class="actions m-2">
-        <input type="submit" value="新規登録" class="btn btn-primary">
+        <input type="submit" value="保存" class="btn btn-primary">
     </div>
 <% end %>

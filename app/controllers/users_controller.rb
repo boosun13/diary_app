@@ -20,13 +20,33 @@ class UsersController < ApplicationController
       image_name: "noimage.png"
     )
     if @user.save
-      redirect_to "/users", notice: 'User was successfully created.'
+      redirect_to ("/users"), notice: 'User was successfully created.'
     else
-      render "users/new"
+      render ("users/new")
     end
   end
 
   def edit
+    @user = User.find_by(id: [params[:id]])
+  end
+
+  def update
+    @user = User.find_by(id: [params[:id]])
+    @user.name = params[:name]
+    @user.email = params[:email]
+
+    if params[:image]
+      perms = ['.jpg','.jpeg','.gif','.png']
+      @user.image_name = "#{@user.id}.jpg"
+      image = params[:image]
+      File.open("public/user_images/#{@user.image_name}", 'wb') { |f| f.write(image.read) }
+    end
+
+    if @user.save
+      redirect_to ("/users"), notice: 'User was successfully updated.'
+    else
+      render ("/users/edit") 
+    end
   end
 
 
