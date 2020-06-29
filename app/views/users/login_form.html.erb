@@ -1,0 +1,23 @@
+<% if @error_message %>
+    <div class="form-error bg-danger text-center py-2">
+        <%= @error_message %>
+    </div>
+<% end %>
+<h1 class="text-center p-2">Login</h1>
+<div class="user-show col bg-light mx-auto text-center pt-5" style="width:500px; height:400px;">
+    <%= form_tag("/login") do %>
+        <div class="field my-3" >
+            <p>メールアドレス</p>
+            <input name = "email" value="" class="mx-auto form-control col-8" >
+        </div>
+
+        <div class="field my-3" >
+            <p>パスワード</p>
+            <input name = "password" type="password" class="mx-auto form-control col-8" >
+        </div>
+
+        <div class="actions m-4">
+            <input type="submit" value="ログイン" class="btn btn-primary">
+        </div>
+    <% end %>
+</div>
