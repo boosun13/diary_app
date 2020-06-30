@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   post "login" => "users#login"
   post "logout" => "users#logout"
 
-  resources :users
+  resources :users do
+    resources :blogs
+  end
   
-  resources :blogs
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get "/" => "top#home"

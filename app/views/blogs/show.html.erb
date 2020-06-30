@@ -13,9 +13,9 @@
     <div>
       <div>
         <P>更新日時</p>
-        <%= @blog.updated_at %>
+        <%= @blog.updated_at.strftime("%Y年%m月%d日 %H:%M:%S") %>
         <P>作成日時</p>
-        <%= @blog.created_at %>
+        <%= @blog.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>
       </div>
     </div>
   </p>
