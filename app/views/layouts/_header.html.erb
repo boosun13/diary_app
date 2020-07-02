@@ -7,7 +7,6 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/blogs">Back number <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
@@ -23,7 +22,8 @@
             Tool
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to 'New Blog', new_user_blog_path, class: "dropdown-item" %>
+            <%= link_to 'Back number', blogs_path(@current_user.id), class: "dropdown-item" %> 
+            <%= link_to 'New Blog', new_blog_path(@current_user.id), class: "dropdown-item" %> 
             <a class="dropdown-item" href="#">Search Blog</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/users">User Index</a>

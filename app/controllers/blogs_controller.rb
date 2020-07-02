@@ -5,7 +5,12 @@ class BlogsController < ApplicationController
 
 
   def blogs_index
-      @new_blogs = Blog.all.order(id: "DESC")
+    if params[:id]  
+      @user = User.find_by(id: params[:id])
+    else
+      @user = User.find_by(id: @current_user[:id])
+    end
+    # @new_blogs = Blog.where(user_id: params[:id])
   end
 
   # GET /blogs
@@ -33,6 +38,7 @@ class BlogsController < ApplicationController
   # POST /blogs.json
   def create
     @blog = Blog.new(blog_params)
+    @blog.user_id = @current_user.id
 
     respond_to do |format|
       if @blog.save
@@ -78,6 +84,6 @@ class BlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def blog_params
-      params.require(:blog).permit(:title, :content)
+      params.require(:blog).permit(:title, :content, :user_id) 
     end
 end

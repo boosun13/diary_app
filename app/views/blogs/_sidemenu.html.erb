@@ -1,12 +1,14 @@
 <div class="col-xs-12 col-sm-3 bg-light">
 
-  <h4>最新投稿一覧</h4>
+  <h4><%= @user.name %></h4>
+  <h5>最新投稿一覧</h5>
+  <img src="<%= "/user_images/#{@user.image_name}" %>" style="width: 50px; height: 50px; border-radius: 40%;">
   <ul>
-    <% @new_blogs.first(5).each do |new_user_blog| %>
-      <li>
-        <%= new_user_blog.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>
+    <% @user.blogs.first(5).each do |blog| %>
+      <li class="my-3">
+        <%= blog.created_at.strftime("%Y年%m月%d日") %>
         <br>
-        <%= link_to(new_user_blog.title, "/blogs/#{new_user_blog.id}", class: "btn btn-outline-warning", remote: true) %>
+        <%= link_to(blog.title, "/blogs/#{blog.id}", class: "btn btn-outline-warning p-2", remote: true) %>
       </li>
     <% end %>
   </ul>
