@@ -14,7 +14,7 @@
             <P>登録日時</p>
             <%= @user.created_at %>
         </div>
-        <%= link_to "ページへ行く", blogs_path(id: @user.id) ,class: "btn btn-outline-primary m-2" %>
+        <%= link_to "ページへ行く", blogs_path(user: @user.id) ,class: "btn btn-outline-primary m-2" %>
     </p>
 
     <%= link_to '再編集', edit_user_path, class: "btn btn-outline-primary m-2" %>

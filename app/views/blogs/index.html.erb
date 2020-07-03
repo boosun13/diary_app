@@ -5,11 +5,11 @@
     <div class="col" id="main">
       <%= will_paginate @blogs, list_classes: %w(pagination justify-content-center) %>
       <ul>
-        <% @user.blogs.each do |blog| %>
+        <% @blogs.each do |blog| %>
           <li>
             <div class="card mb-2 mt-2">
               <div class="card-body">
-                <h6 class="card-subtitle text-muted"><%= link_to blog.title, blog,class: "btn btn-outline-warning", remote: true %></h6>
+                <h6 class="card-subtitle text-muted"><%= link_to blog.title, blog ,class: "btn btn-outline-warning", remote: true %></h6>
                 <h5 class="card-title"><%= blog.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></h5>
                 <p class="card-text"><%= truncate(blog.content, length:40, omission: '…') %></p>
               </div>

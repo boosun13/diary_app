@@ -5,10 +5,12 @@ class BlogsController < ApplicationController
 
 
   def blogs_index
-    if params[:id]  
-      @user = User.find_by(id: params[:id])
+    if params[:user]  
+      @user = User.find_by(id: params[:user])
+      @new_blogs = @user.blogs.order(created_at: :desc)
     else
       @user = User.find_by(id: @current_user[:id])
+      @new_blogs = @user.blogs.order(created_at: :desc)
     end
     # @new_blogs = Blog.where(user_id: params[:id])
   end
@@ -16,7 +18,7 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all.order(id: "DESC").paginate(page: params[:page], per_page: 3)
+    @blogs = @user.blogs.all.order(created_at: :desc).paginate(page: params[:page], per_page: 3)
   end
   
   # GET /blogs/1

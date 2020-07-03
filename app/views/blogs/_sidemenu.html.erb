@@ -4,11 +4,11 @@
   <h5>最新投稿一覧</h5>
   <img src="<%= "/user_images/#{@user.image_name}" %>" style="width: 50px; height: 50px; border-radius: 40%;">
   <ul>
-    <% @user.blogs.first(5).each do |blog| %>
+    <% @new_blogs.first(4).each do |blog| %>
       <li class="my-3">
         <%= blog.created_at.strftime("%Y年%m月%d日") %>
         <br>
-        <%= link_to(blog.title, "/blogs/#{blog.id}", class: "btn btn-outline-warning p-2", remote: true) %>
+        <%= link_to(blog.title, blog , class: "btn btn-outline-warning p-2", remote: true) %>
       </li>
     <% end %>
   </ul>
