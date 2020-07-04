@@ -21,6 +21,12 @@
     <%= form.text_area :content, class:"form-control", rows:"10" %>
   </div>
 
+  <div class="field m-2" >
+    <label><%= form.radio_button :range, "0" %> 非公開 </label>
+    <%= form.radio_button :range, 3 %>
+    <%= form.label :range, "公開", {value: 3, style: "display: inline-block;"} %>
+  </div>
+
   <div class="actions m-2">
     <%= form.submit class: "btn btn-primary" %>
   </div>

@@ -7,7 +7,7 @@ class BlogsController < ApplicationController
   def blogs_index
     if params[:user]  
       @user = User.find_by(id: params[:user])
-      @new_blogs = @user.blogs.order(created_at: :desc)
+      @new_blogs = @user.blogs.where(range: nil).order(created_at: :desc)
     else
       @user = User.find_by(id: @current_user[:id])
       @new_blogs = @user.blogs.order(created_at: :desc)
@@ -18,7 +18,12 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = @user.blogs.all.order(created_at: :desc).paginate(page: params[:page], per_page: 3)
+    if @current_user.id == @user.id
+      @blogs = @user.blogs.all.order(created_at: :desc).paginate(page: params[:page], per_page: 3)      
+    else
+      @blogs = @user.blogs.where(range: nil).order(created_at: :desc).paginate(page: params[:page], per_page: 3)      
+      
+    end
   end
   
   # GET /blogs/1
@@ -86,6 +91,6 @@ class BlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def blog_params
-      params.require(:blog).permit(:title, :content, :user_id) 
+      params.require(:blog).permit(:title, :content, :user_id, :range) 
     end
 end
