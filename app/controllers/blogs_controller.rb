@@ -1,16 +1,17 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :blogs_index
-  before_action :authenticate_user, {only:[:index, :show, :edit, :update, :new   ]}
+  before_action :authenticate_user, {only:[:index, :show, :edit, :update, :new ]}
+  before_action :ensure_correct_user , {only: [:edit, :update, :destroy]}
 
 
   def blogs_index
-    if params[:user]  
+    if params[:user].to_i == @current_user.id || params[:user] == nil
+      @user = User.find_by(id: @current_user[:id])
+      @new_blogs = @user.blogs.all.order(created_at: :desc)
+    else
       @user = User.find_by(id: params[:user])
       @new_blogs = @user.blogs.where(range: nil).order(created_at: :desc)
-    else
-      @user = User.find_by(id: @current_user[:id])
-      @new_blogs = @user.blogs.order(created_at: :desc)
     end
     # @new_blogs = Blog.where(user_id: params[:id])
   end
@@ -30,6 +31,12 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     @blog = Blog.find_by(id: params[:id])
+    if @blog.range != nil
+      if @blog.user_id == @current_user.id
+      else
+        redirect_to ("/blogs"), notice: "IDエラー"
+      end
+    end
   end
 
   # GET /blogs/new
@@ -92,5 +99,12 @@ class BlogsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def blog_params
       params.require(:blog).permit(:title, :content, :user_id, :range) 
+    end
+
+    def ensure_correct_user
+      @blog = Blog.find_by(id: params[:id])
+      if @blog.user_id != @current_user.id
+        redirect_to ("/blogs"), notice: "他のユーザーです"
+      end
     end
 end

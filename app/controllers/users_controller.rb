@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, {only:[:index, :show, :edit, :update ]}
+  before_action :ensure_correct_user , {only: [:edit, :update, :destroy]}
   
   def index
     @users = User.all.
-    paginate(page: params[:page], per_page: 10)
+    paginate(page: params[:page], per_page: 6)
   end
   
   def show
@@ -84,5 +86,12 @@ class UsersController < ApplicationController
     redirect_to ("/login"), notice: 'Logout succeeded. See you !'
   end
 
+
+  def ensure_correct_user
+    @user = User.find_by(id: [params[:id]])
+    if @user.id != @current_user.id
+      redirect_to ("/users"), notice: "他のユーザーです"
+    end
+  end
 
 end

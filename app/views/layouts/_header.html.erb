@@ -9,44 +9,37 @@
       <li class="nav-item">
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">About</a>
       </li>
       <% if @current_user == nil %>
-      <li class="nav-item">
-        <a class="nav-link" href="/login">Login</a>
-      </li>
-      <% end %>
-      <% if @current_user %>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tool
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to 'Back number', blogs_path(@current_user.id), class: "dropdown-item" %> 
-            <%= link_to 'New Blog', new_blog_path(@current_user.id), class: "dropdown-item" %> 
-            <a class="dropdown-item" href="#">Search Blog</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/users">User Index</a>
-            <a class="dropdown-item" href="/users/new">Sign Up</a>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/logout" data-method="post">Logout</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/users/<%= @current_user.id %>"><%= @current_user.name %></a>
+          <a class="nav-link" href="/users/new">Sign Up</a>
+        </li>      
+        <% end %>
+      <% if @current_user %>
+        <li class="nav-item">
+          <a class="nav-link" href="/users">User Index</a>
         </li>
       <% end %>
-
-
-      <%
-=begin%>
- <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li> 
-<%
-=end%>
     </ul>
+    <% if @current_user %>
+    <div class="nav-item dropdown mx-2">
+      <a class="nav-link dropdown-toggle text-light btn btn-success" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= @current_user.name %>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <%= link_to 'My Page', user_path(@current_user.id), class: "dropdown-item" %> 
+        <%= link_to 'Back number', blogs_path(@current_user.id), class: "dropdown-item" %> 
+        <%= link_to 'New Blog', new_blog_path(@current_user.id), class: "dropdown-item" %> 
+        <a class="dropdown-item" href="#">Search Blog</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/logout" data-method="post">Logout</a>
+      </div>
+    </div>
+    <% end %>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

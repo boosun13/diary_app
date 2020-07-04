@@ -1,5 +1,9 @@
+<% if notice == "他のユーザーです" %>
+    <p id="notice" class="col bg-danger text-center py-2"><%= notice %></p>
+<% elsif notice %>
+    <p id="notice" class="col bg-success text-center py-2"><%= notice %></p>
+<% end %>
 <div class="container-fluid">
-  <p id="notice"><%= notice %></p>
   <div class="row blogs">
     <%= render "blogs/sidemenu" %>
     <div class="col" id="main">
