@@ -18,14 +18,14 @@
         <%= @blog.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>
       </div>
       <% if @blog.range == 0 %>
-        <p>非公開(自分以外は非表示)</p>
+        <p class="text-danger" >非公開(自分以外は非表示)</p>
       <% else %>
-        <P>公開(全員公開)</p>
+        <P class="text-success">公開(全員公開)</p>
       <% end %>
     </div>
   </p>
   <% if @blog.user_id == @current_user.id %>
-    <%= link_to '再編集', edit_blog_path(@blog), class: "btn btn-outline-primary m-2", remote: true %>
+    <%= link_to '再編集', edit_blog_path(@blog), class: "btn btn-outline-primary m-2" %>
     <%= link_to '削除', @blog, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger" %>
     <br>
   <% end %>

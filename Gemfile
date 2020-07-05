@@ -63,3 +63,6 @@ gem 'jquery-rails'
 #pagination
 gem 'will_paginate',           '3.1.7'
 gem 'will_paginate-bootstrap4'
+
+#calendar
+gem 'simple_calendar', '~> 2.0'

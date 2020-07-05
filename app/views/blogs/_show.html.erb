@@ -17,11 +17,11 @@
         <P>作成日時</p>
         <%= @blog.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>
       </div>
-        <% if @blog.range == 0 %>
-          <p>非公開(自分以外は非表示)</p>
-        <% else %>
-          <P>公開(全員公開)</p>
-        <% end %>
+      <% if @blog.range == 0 %>
+        <p class="text-danger" >非公開(自分以外は非表示)</p>
+      <% else %>
+        <P class="text-success">公開(全員公開)</p>
+      <% end %>
     </div>
   </p>
   <% if @blog.user_id == @current_user.id %>

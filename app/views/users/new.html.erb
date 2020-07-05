@@ -1,30 +1,29 @@
+<% if @error_message %>
+    <div class="form-error bg-danger text-center py-2">
+        <%= @error_message %>
+    </div>
+<% end %>
 <h1 class="text-center p-2">Sign Up</h1>
-<div class="user-show col bg-light mx-auto text-center pt-3" style="width:500px; height:450px;">
+<div class="user-show col bg-light mx-auto text-center py-3" style="width:500px; min-height:450px;">
     <%= form_tag(users_path) do %>
-        <% if @user.errors.any? %>
-            <div id="error_explanation">
-                <h2><%= pluralize(@user.errors.count, "error") %> prohibited this blog from being saved:</h2>
-                <ul>
-                    <% @user.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                    <% end %>
-                </ul>
-            </div>
-        <% end %>
 
         <div class="field my-3">
             <p>ユーザー名</p>
-            <input name = "name" value="<%= @user.name %>" class="mx-auto form-control col-8" >
+            <input name = "name" value="<%= @user.name %>" class="mx-auto form-control col-8" placeholder="5文字以内" >
         </div>
 
         <div class="field my-3" >
             <p>メールアドレス</p>
-            <input name = "email" value="<%= @user.email %>" class="mx-auto form-control col-8" >
+            <input name = "email" value="<%= @user.email %>" class="mx-auto form-control col-8" placeholder="example@app.co.jp" >
         </div>
 
         <div class="field my-3" >
             <p>パスワード</p>
-            <input name = "password" value="<%= @user.password %>" class="mx-auto form-control col-8" >
+            <input name = "password" class="mx-auto form-control col-8" placeholder="6文字以上">
+        </div>
+        <div class="field my-3" >
+            <p>もう一度パスワード</p>
+            <input name = "password2" class="mx-auto form-control col-8" placeholder="6文字以上">
         </div>
 
         <div class="actions m-4">

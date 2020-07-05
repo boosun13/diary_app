@@ -22,9 +22,8 @@
   </div>
 
   <div class="field m-2" >
-    <label><%= form.radio_button :range, "0" %> 非公開 </label>
-    <%= form.radio_button :range, 3 %>
-    <%= form.label :range, "公開", {value: 3, style: "display: inline-block;"} %>
+    <label><%= form.radio_button :range, "0",checked: true %> 非公開 </label>
+    <label><%= form.radio_button :range, ""  %> 公開 </label>
   </div>
 
   <div class="actions m-2">

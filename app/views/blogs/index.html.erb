@@ -6,15 +6,15 @@
 <div class="container-fluid">
   <div class="row blogs">
     <%= render "blogs/sidemenu" %>
-    <div class="col" id="main">
+    <div class="col p-2" id="main">
       <%= will_paginate @blogs, list_classes: %w(pagination justify-content-center) %>
       <ul>
         <% @blogs.each do |blog| %>
           <li>
             <div class="card mb-2 mt-2">
               <div class="card-body">
-                <h6 class="card-subtitle text-muted"><%= link_to blog.title, blog ,class: "btn btn-outline-warning", remote: true %></h6>
                 <h5 class="card-title"><%= blog.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></h5>
+                <h6 class="card-subtitle text-muted"><%= link_to blog.title, blog ,class: "btn btn-outline-warning", remote: true %></h6>
                 <p class="card-text"><%= truncate(blog.content, length:40, omission: '…') %></p>
               </div>
             </div>
@@ -23,6 +23,15 @@
       </ul>
       <%= will_paginate @blogs, list_classes: %w(pagination justify-content-center) %>
     </div>
+    <div class="col-xs-12 col-sm-4 p-2">
+    <%= month_calendar events: @new_blogs do |date, blogs| %>
+      <%= date.day %>
+      <% blogs.each do |blog| %>
+        <div>
+          <%= link_to "UP!", blog, class: "btn btn-outline-warning px-1 py-0", remote: true %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
 

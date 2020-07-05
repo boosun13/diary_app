@@ -21,11 +21,16 @@ class UsersController < ApplicationController
       password: params[:password],
       image_name: "noimage.png"
     )
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to ("/users"), notice: 'User was successfully created.'
-    else
+    if params[:password] != params[:password2]
+      @error_message = "パスワードを一致させてください"
       render ("users/new")
+    else
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to ("/users"), notice: 'User was successfully created.'
+      else
+        render ("users/new")
+      end
     end
   end
 
