@@ -24,14 +24,36 @@
       <%= will_paginate @blogs, list_classes: %w(pagination justify-content-center) %>
     </div>
     <div class="col-xs-12 col-sm-4 p-2">
-    <%= month_calendar events: @new_blogs do |date, blogs| %>
-      <%= date.day %>
-      <% blogs.each do |blog| %>
-        <div>
-          <%= link_to "UP!", blog, class: "btn btn-outline-warning px-1 py-0", remote: true %>
-        </div>
+      <%= month_calendar events: @new_blogs do |date, blogs| %>
+        <%= date.day %>
+        <% blogs.each do |blog| %>
+          <div>
+            <%= link_to "UP!", blog, class: "btn btn-outline-warning px-1 py-0", remote: true %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+      <div id="user_memo">
+        <% if @memo %>
+          <%= form_tag(memo_path(@memo), method: :put ) do %>
+            <div class="field m-2" >
+              <textarea name="memo" class="form-control", rows="10">メモ済み<%= @memo.content %></textarea>
+            </div>
+            <div class="actions m-2">
+              <input type="submit" value="保存" class="btn btn-primary">
+            </div>
+          <% end %>
+        <% else %>
+          <%= form_tag(memos_path, method: :post ) do %>
+            <div class="field m-2" >
+              <textarea name="memo" class="form-control", rows="10">新規</textarea>
+            </div>
+            <div class="actions m-2">
+              <input type="submit" value="保存" class="btn btn-primary">
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 

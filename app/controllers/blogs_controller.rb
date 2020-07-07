@@ -14,6 +14,9 @@ class BlogsController < ApplicationController
       @new_blogs = @user.blogs.where(range: nil).order(created_at: :desc)
     end
     # @new_blogs = Blog.where(user_id: params[:id])
+    
+    @memo = Memo.find_by(user_id: @current_user.id)
+
   end
 
   # GET /blogs
