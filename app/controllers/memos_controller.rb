@@ -2,6 +2,7 @@ class MemosController < ApplicationController
   def create
     @user_memo = Memo.new(content: params[:memo], user_id: @current_user.id)
     @user_memo.save
+    reder
   end
 
   def update

@@ -1,8 +1,8 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
-  before_action :blogs_index
   before_action :authenticate_user, {only:[:index, :show, :edit, :update, :new ]}
   before_action :ensure_correct_user , {only: [:edit, :update, :destroy]}
+  before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :blogs_index
 
 
   def blogs_index
@@ -40,6 +40,8 @@ class BlogsController < ApplicationController
         redirect_to ("/blogs"), notice: "IDエラー"
       end
     end
+
+    @comment_index = Comment.where(blog_id: params[:id])
   end
 
   def search

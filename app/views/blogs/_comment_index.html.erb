@@ -1,0 +1,23 @@
+<div>
+    <%= form_tag(comments_path(blog_id: @blog.id)) do %>
+        <div class="field m-2" >
+            <textarea name="comment" class="form-control", rows="2"></textarea>
+        </div>
+        <div class="actions m-2">
+            <input type="submit" value="投稿" class="btn btn-primary">
+        </div>
+    <% end %>
+
+    <% if @comment_index %>
+        <% @comment_index.each do |comment| %>
+            <div class="card mb-2 mt-2">
+                <div class="card-body">
+                    <h6 class="card-title"><%= comment.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></h6>
+                    <h6 class="card-subtitle"><%= link_to comment.user.name, comment.user %></h6>
+                    <p class="card-text"><%= comment.content %></p>
+                    <%= link_to '削除', comment, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger p-2", style:"font-size:10px;" %>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+</div>

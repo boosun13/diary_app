@@ -5,3 +5,10 @@
 .blogs{
     min-height: calc(100vh - 50px);
 }
+
+#main .blog-index {
+    a:link {color:rgb(0, 0, 0); text-decoration:none }
+    a:visited { color:rgb(0, 0, 0); text-decoration:none }
+    a:hover { color:rgb(0, 0, 0); text-decoration:none }
+    a:active { color:rgb(0, 0, 0); text-decoration:none }
+}

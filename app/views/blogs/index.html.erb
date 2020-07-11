@@ -8,33 +8,32 @@
     <%= render "blogs/sidemenu" %>
     <div class="col p-2" id="main">
       <%= will_paginate @blogs, list_classes: %w(pagination justify-content-center) %>
-      <ul>
         <% @blogs.each do |blog| %>
-          <li>
-            <div class="card mb-2 mt-2">
-              <div class="card-body">
-                <h5 class="card-title"><%= blog.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></h5>
-                <h6 class="card-subtitle text-muted"><%= link_to blog.title, blog ,class: "btn btn-outline-warning", remote: true %></h6>
-                <p class="card-text"><%= truncate(blog.content, length:40, omission: '…') %></p>
-              </div>
+          <div class="blog-index card mb-2 mt-2 btn btn-light text-left" ><%= link_to blog,remote: true do %>
+            <div class="card-body">
+              <h5 class="card-subtitle text-muted"><%= blog.title %></h5>
+              <h6 class="card-title"><%= blog.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></h6>
+              <p class="card-text"><%= truncate(blog.content, length:40, omission: '…') %></p>
             </div>
-          </li>
+          <% end %>
+          </div>
         <% end %>
-      </ul>
       <%= will_paginate @blogs, list_classes: %w(pagination justify-content-center) %>
     </div>
-    <div class="col-xs-12 col-sm-4 p-2">
+    <div class="col-xs-12 col-lg-3 p-2">
       <%= month_calendar events: @new_blogs do |date, blogs| %>
         <%= date.day %>
         <% blogs.each do |blog| %>
-          <div>
-            <%= link_to "UP!", blog, class: "btn btn-outline-warning px-1 py-0", remote: true %>
+          <div style="font-size:10px;">
+            <%= link_to "UP!", blog, class: "btn btn-outline-warning p-1", remote: true, style: "font-size:10px;" %>
           </div>
         <% end %>
       <% end %>
       <div id="user_memo">
         <% if @memo %>
           <%= form_tag(memo_path(@memo), method: :put ) do %>
+            <h3>Free Memo</h3>
+            <h5><%= @memo.updated_at.strftime("%Y年%m月%d日 %H:%M:%S") %> 更新</h5>
             <div class="field m-2" >
               <textarea name="memo" class="form-control", rows="10">メモ済み<%= @memo.content %></textarea>
             </div>
