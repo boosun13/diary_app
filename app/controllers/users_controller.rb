@@ -3,8 +3,7 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user , {only: [:edit, :update, :destroy]}
   
   def index
-    @users = User.all.
-    paginate(page: params[:page], per_page: 6)
+    @users = User.search(params[:search]).paginate(page: params[:page], per_page: 5)
   end
   
   def show

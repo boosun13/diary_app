@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-xs-12 col-lg-3 bg-light">
+            <p>検索</p>
+            <%= form_tag(searches_path,:method => 'get') do %>
+            <%= text_field_tag :search %>
+            <%= submit_tag 'Search', :name => nil %>
+            <% end %>
+        </div>
+
+        <div class="col p-2" id="search-index">
+            <h3>最新投稿一覧</h3>
+            <%= will_paginate @blogs, list_classes: %w(pagination justify-content-center) %>
+            <% @blogs.each do |blog| %>
+                <div class="blog-index card mb-2 mt-2 btn btn-light text-left" ><%= link_to blog,local: true do %>
+                <div class="card-body">
+                    <h4 class="card-title"><%= blog.user.name %></h4>
+                    <h5 class="card-subtitle text-muted"><%= blog.title %></h5>
+                    <h6 class="card-title"><%= blog.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></h6>
+                    <p class="card-text"><%= truncate(blog.content, length:40, omission: '…') %></p>
+                </div>
+                <% end %>
+                </div>
+            <% end %>
+            <%= will_paginate @blogs, list_classes: %w(pagination justify-content-center) %>
+        </div>
+
+    </div>
+</div>
