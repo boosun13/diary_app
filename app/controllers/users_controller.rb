@@ -21,8 +21,9 @@ class UsersController < ApplicationController
       image_name: "noimage.png"
     )
     if params[:password] != params[:password2]
-      @error_message = "パスワードを一致させてください"
+      flash[:error] = "パスワードを一致させてください"
       render ("users/new")
+      flash[:error] = nil
     else
       if @user.save
         session[:user_id] = @user.id
@@ -41,23 +42,30 @@ class UsersController < ApplicationController
     @user = User.find_by(id: [params[:id]])
     @user.name = params[:name]
     @user.email = params[:email]
-    
-    if params[:image]
-      if params[:image] == "reset"
-        @user.image_name = "noimage.png"
-      else
-        perms = ['.jpg','.jpeg','.gif','.png']
-        @user.image_name = "#{@user.id}.jpg"
-        image = params[:image]
-        File.open("public/user_images/#{@user.image_name}", 'wb') { |f| f.write(image.read) }
-      end
-    end
-    
-    
-    if @user.save
-      redirect_to ("/users"), notice: 'User was successfully updated.'
+    @user.password = params[:password]
+
+    if params[:password] != params[:password2]
+      flash[:error] = "パスワードを一致させてください"
+      render ("users/new")
+      flash[:error] = nil
     else
-      render ("/users/edit") 
+      if params[:image]
+        if params[:image] == "reset"
+          @user.image_name = "noimage.png"
+        else
+          perms = ['.jpg','.jpeg','.gif','.png']
+          @user.image_name = "#{@user.id}.jpg"
+          image = params[:image]
+          File.open("public/user_images/#{@user.image_name}", 'wb') { |f| f.write(image.read) }
+        end
+      end
+      
+      
+      if @user.save
+        redirect_to ("/users"), notice: 'User was successfully updated.'
+      else
+        render ("/users/edit") 
+      end
     end
   end
 
@@ -77,11 +85,14 @@ class UsersController < ApplicationController
     @user = User.find_by(email: params[:email],
       password: params[:password])
     if @user
-      session[:user_id] =@user.id
-      redirect_to ("/blogs"), notice: 'Login succeeded. Hello World !'
+      session[:user_id] = @user.id
+      redirect_to ("/blogs")
+      flash[:success] = 'Login succeeded. Hello World !'
     else
-      @error_message = "Email address or password is error"
+      flash[:error] = "Email address or password is error"
       render ("/users/login_form")
+      flash[:error] = nil
+      
     end
   end
 
@@ -94,7 +105,8 @@ class UsersController < ApplicationController
   def ensure_correct_user
     @user = User.find_by(id: [params[:id]])
     if @user.id != @current_user.id
-      redirect_to ("/users"), notice: "他のユーザーです"
+      redirect_to ("/users")
+      flash[:error] = "他のユーザーです"
     end
   end
 

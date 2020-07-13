@@ -1,8 +1,3 @@
-<% if notice == "他のユーザーです" %>
-    <p id="notice" class="col bg-danger text-center py-2"><%= notice %></p>
-<% elsif notice %>
-    <p id="notice" class="col bg-success text-center py-2"><%= notice %></p>
-<% end %>
 <div class="container-fluid">
   <div class="row blogs">
     <%= render "blogs/sidemenu" %>
@@ -29,28 +24,31 @@
           </div>
         <% end %>
       <% end %>
+
       <div id="user_memo">
+        <h3>Free Memo</h3>
         <% if @memo %>
-          <%= form_tag(memo_path(@memo), method: :put ) do %>
-            <h3>Free Memo</h3>
-            <h5><%= @memo.updated_at.strftime("%Y年%m月%d日 %H:%M:%S") %> 更新</h5>
+          <%= form_tag(memo_path(@memo), method: :put,remote: true ) do %>
+            <h5 class="text-info"><%= @memo.updated_at.strftime("%Y年%m月%d日 %H:%M:%S") %> 更新</h5>
             <div class="field m-2" >
-              <textarea name="memo" class="form-control", rows="10">メモ済み<%= @memo.content %></textarea>
+              <textarea name="memo" class="form-control", rows="10"><%= @memo.content %></textarea>
             </div>
             <div class="actions m-2">
-              <input type="submit" value="保存" class="btn btn-primary">
+              <input type="submit" value="保存" class="btn btn-primary" id="memo-btn" data-disable-with="保存しています..." >
             </div>
           <% end %>
         <% else %>
-          <%= form_tag(memos_path, method: :post ) do %>
+          <%= form_tag(memos_path, method: :post,remote: true ) do %>
             <div class="field m-2" >
               <textarea name="memo" class="form-control", rows="10">新規</textarea>
             </div>
             <div class="actions m-2">
-              <input type="submit" value="保存" class="btn btn-primary">
+              <input type="submit" value="保存" class="btn btn-primary" id="memo-btn" data-disable-with="保存しています..." >
             </div>
           <% end %>
         <% end %>
+        
+
       </div>
     </div>
   </div>

@@ -6,7 +6,9 @@ class CommentsController < ApplicationController
         if @comment.save
             @blog = Blog.find_by(id: params[:blog_id])
             @comment_index = Comment.where(blog_id: params[:blog_id])
-            render :show
+            flash[:notice] = "コメントを投稿しました。"
+            render :show 
+            flash[:notice] = nil
         else
             redirect_to ("/blogs"), notice: "投稿できませんでした"
         end
@@ -18,7 +20,9 @@ class CommentsController < ApplicationController
         if @comment.destroy
             @blog = Blog.find_by(id: blog_id)
             @comment_index = Comment.where(blog_id: blog_id)
+            flash[:notice] = "コメントを削除しました。"
             render :show
+            flash[:notice] = nil
         end
     end
 end

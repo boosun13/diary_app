@@ -1,17 +1,17 @@
+<% if @user.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this blog from being saved:</h2>
+        <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
 <h1 class="text-center p-2">User Edit</h1>
 
-<div class="user-show col bg-light pt-4 mb-5 mx-auto text-center" style="width:500px; height:450px;">
+<div class="user-show col bg-light py-4 mb-5 mx-auto text-center" style="width:500px; min-height:450px;">
 <%= form_tag(user_path, method: :put , multipart: true) do %>
-    <% if @user.errors.any? %>
-        <div id="error_explanation">
-            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this blog from being saved:</h2>
-            <ul>
-                <% @user.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
 
     <div class="field mx-auto">
         <p>ユーザー名</p>
@@ -33,7 +33,12 @@
 
     <div class="field mx-auto" >
         <p>パスワード</p>
-        <input name = "password" value="<%= @user.password %>" class="form-control col-8 mx-auto" >
+        <input name = "password"  class="form-control col-8 mx-auto" placeholder="6文字以上" >
+    </div>
+
+    <div class="field my-3" >
+        <p>もう一度パスワード</p>
+        <input name = "password2" class="mx-auto form-control col-8" placeholder="6文字以上">
     </div>
 
     <div class="actions m-2">

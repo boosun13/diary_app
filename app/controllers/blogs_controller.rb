@@ -37,7 +37,7 @@ class BlogsController < ApplicationController
     if @blog.range != nil
       if @blog.user_id == @current_user.id
       else
-        redirect_to ("/blogs"), notice: "IDエラー"
+        redirect_to ("/blogs"), alert: "IDエラー"
       end
     end
 
@@ -62,7 +62,7 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
     @blog.user_id = @current_user.id
-    @blog.start_time = @blog.created_at
+    @blog.start_time = Time.now
 
     respond_to do |format|
       if @blog.save
@@ -115,7 +115,7 @@ class BlogsController < ApplicationController
     def ensure_correct_user
       @blog = Blog.find_by(id: params[:id])
       if @blog.user_id != @current_user.id
-        redirect_to ("/blogs"), notice: "他のユーザーです"
+        redirect_to ("/blogs"), alert: "他のユーザーです"
       end
     end
 end

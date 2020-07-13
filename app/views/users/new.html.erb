@@ -1,6 +1,11 @@
-<% if @error_message %>
-    <div class="form-error bg-danger text-center py-2">
-        <%= @error_message %>
+<% if @user.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this blog from being saved:</h2>
+        <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
     </div>
 <% end %>
 <h1 class="text-center p-2">Sign Up</h1>
@@ -9,7 +14,7 @@
 
         <div class="field my-3">
             <p>ユーザー名</p>
-            <input name = "name" value="<%= @user.name %>" class="mx-auto form-control col-8" placeholder="5文字以内" >
+            <input name = "name" value="<%= @user.name %>" class="mx-auto form-control col-8" placeholder="10文字以内" >
         </div>
 
         <div class="field my-3" >

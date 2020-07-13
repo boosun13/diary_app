@@ -1,0 +1,27 @@
+<% if @user_memo %>
+    <%= form_tag(memo_path(@user_memo), method: :put,remote: true ) do %>
+    <h3>Free Memo</h3>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    メモを保存しました。
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <h5 class="text-info"><%= @user_memo.updated_at.strftime("%Y年%m月%d日 %H:%M:%S") %> 更新</h5>
+    <div class="field m-2" >
+        <textarea name="memo" class="form-control", rows="10"><%= @user_memo.content %></textarea>
+    </div>
+    <div class="actions m-2">
+        <input type="submit" value="保存" id="memo-btn" class="btn btn-primary" data-disable-with="保存しています..." >
+    </div>
+    <% end %>
+<% else %>
+    <%= form_tag(memos_path, method: :post,remote: true ) do %>
+    <div class="field m-2" >
+        <textarea name="memo" class="form-control", rows="10">新規</textarea>
+    </div>
+    <div class="actions m-2">
+        <input type="submit" value="保存" id="memo-btn" class="btn btn-primary" data-disable-with="保存しています..." >
+    </div>
+    <% end %>
+<% end %>
